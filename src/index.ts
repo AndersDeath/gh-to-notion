@@ -13,14 +13,26 @@ const logger = new Logger();
 
 logger.info('Application has been started');
 
-console.log('==========!@#!@#!@#!@#123==========')
+console.log('==========!@#!@#!@#!@#123==========');
+
+const ghUserQuery = ({username, perPage, page} : {username: string; perPage: number; page: number}): string => {
+  return `https://api.github.com/search/repositories?q=user:${username}&per_page=${perPage}&page=${page}`;
+}
+
+const ghAuthHeader = (ghToken: string): any => {
+  return {
+    'Authorization': `token ${ghToken}`,
+    'Accept-Encoding': 'application/json',
+  }
+}
 
 const getGithubData = async () => {
-    const res =  await axios.get('https://api.github.com/search/repositories?q=user:' + process.env.GH_USERNAME +'&per_page=20&page=1', {
-        headers: {
-            'Authorization': `token ${process.env.GH_TOKEN}`,
-            'Accept-Encoding': 'application/json',
-        }
+    const res =  await axios.get(ghUserQuery({
+      username:  process.env.GH_USERNAME,
+      perPage: 20,
+      page: 1,
+    }), {
+        headers: ghAuthHeader(process.env.GH_TOKEN)
     },);
     return res;
 } 
