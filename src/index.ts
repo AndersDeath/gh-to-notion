@@ -26,6 +26,18 @@ const ghAuthHeader = (ghToken: string): { Authorization: string; 'Accept-Encodin
   }
 }
 
+const ntnTitleField = (name: string) => {
+  return {
+    title:[
+      {
+        "text": {
+          "content": name,
+        }
+      }
+    ]
+  }
+}
+
 const getGithubData = async () => {
     const res =  await axios.get(ghUserQuery({
       username:  process.env.GH_USERNAME,
@@ -54,15 +66,7 @@ async function addItem(
       const response = await notion.pages.create({
         parent: { database_id: databaseId },
         properties: {
-          Title: {
-            title:[
-              {
-                "text": {
-                  "content": name,
-                }
-              }
-            ]
-          },
+          Title: ntnTitleField(name),
           URL: {
               type: 'url',
               url: html_url
