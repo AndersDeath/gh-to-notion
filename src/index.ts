@@ -26,7 +26,7 @@ const ghAuthHeader = (ghToken: string): { Authorization: string; 'Accept-Encodin
   }
 }
 
-const ntnTitleField = (name: string) => {
+const ntnTitleField = (name: string): any => {
   return {
     title:[
       {
@@ -35,6 +35,13 @@ const ntnTitleField = (name: string) => {
         }
       }
     ]
+  }
+}
+
+const ntnUrlField = (url: string): any => {
+  return {
+    type: 'url',
+    url: url
   }
 }
 
@@ -67,10 +74,7 @@ async function addItem(
         parent: { database_id: databaseId },
         properties: {
           Title: ntnTitleField(name),
-          URL: {
-              type: 'url',
-              url: html_url
-          },
+          URL: ntnUrlField(html_url),
           Description: {
             rich_text: [
                 {
