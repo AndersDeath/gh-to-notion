@@ -55,8 +55,22 @@ const ntnRichTextField = (content: string, byDefault: string): any => {
         }
     }
     ]
-  }
+  } 
+}
+
+const ntmMultiSelectItem = () => {
   
+}
+
+const ntnMultiSelectField = (elements: string): any => {
+  return {
+    type:'multi_select',
+    multi_select: [
+        {
+            name: elements || 'no language'
+        }
+    ]
+  }
 }
 
 const getGithubData = async () => {
@@ -90,14 +104,9 @@ async function addItem(
           Title: ntnTitleField(name),
           URL: ntnUrlField(html_url),
           Description: ntnRichTextField(description, 'no description'),
-          Language: {
-            type:'multi_select',
-            multi_select: [
-                {
-                    name: language || 'no language'
-                }
-            ]
-          },
+          Language: ntnMultiSelect([
+            language
+          ]),
           Fork: {
             type: 'checkbox',
             checkbox: fork
