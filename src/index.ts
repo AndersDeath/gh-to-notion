@@ -45,6 +45,20 @@ const ntnUrlField = (url: string): any => {
   }
 }
 
+const ntnRichTextField = (content: string, byDefault: string): any => {
+  return {
+    rich_text: [
+        {
+        type: 'text',
+        text: {
+            content:  content || byDefault
+        }
+    }
+    ]
+  }
+  
+}
+
 const getGithubData = async () => {
     const res =  await axios.get(ghUserQuery({
       username:  process.env.GH_USERNAME,
@@ -75,16 +89,7 @@ async function addItem(
         properties: {
           Title: ntnTitleField(name),
           URL: ntnUrlField(html_url),
-          Description: {
-            rich_text: [
-                {
-                type: 'text',
-                text: {
-                    content:  description || 'no description',
-                }
-            }
-            ]
-          },
+          Description: ntnRichTextField(description, 'no description'),
           Language: {
             type:'multi_select',
             multi_select: [
@@ -101,16 +106,7 @@ async function addItem(
             type: 'checkbox',
             checkbox: archived
           },
-          Visibility: {
-            rich_text: [
-                {
-                type: 'text',
-                text: {
-                    content:  visibility || 'no description',
-                }
-            }
-            ]
-          },
+          Visibility:  ntnRichTextField(visibility, 'no visibility'),
           Created_at: {
             type: 'date',
             date: {
