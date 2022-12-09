@@ -78,6 +78,15 @@ const ntnCheckboxField = (content): any => {
   }
 }
 
+const ntnDateField = (date: string): any => {
+  return {
+    type: 'date',
+    date: {
+        start: date
+    }
+  }
+}
+
 const getGithubData = async () => {
     const res =  await axios.get(ghUserQuery({
       username:  process.env.GH_USERNAME,
@@ -115,24 +124,9 @@ async function addItem(
           Fork: ntnCheckboxField(fork),
           Archived:  ntnCheckboxField(archived),
           Visibility:  ntnRichTextField(visibility, 'no visibility'),
-          Created_at: {
-            type: 'date',
-            date: {
-                start: created_at
-            }
-          },
-          Updated_at: {
-            type: 'date',
-            date: {
-                start: updated_at
-            }
-          },
-          Pushed_at: {
-            type: 'date',
-            date: {
-                start: pushed_at
-            }
-          }
+          Created_at: ntnDateField(created_at),
+          Updated_at: ntnDateField(updated_at),
+          Pushed_at:  ntnDateField(pushed_at),
         },
       })
       console.log(response)
