@@ -58,18 +58,16 @@ const ntnRichTextField = (content: string, byDefault: string): any => {
   } 
 }
 
-const ntmMultiSelectItem = () => {
-  
+const ntnMultiSelectItem = (content, byDefault) => {
+   return  {
+        name: content || byDefault
+    }
 }
 
-const ntnMultiSelectField = (elements: string): any => {
+const ntnMultiSelectField = (elements: any[]): any => {
   return {
     type:'multi_select',
-    multi_select: [
-        {
-            name: elements || 'no language'
-        }
-    ]
+    multi_select: elements
   }
 }
 
@@ -104,8 +102,8 @@ async function addItem(
           Title: ntnTitleField(name),
           URL: ntnUrlField(html_url),
           Description: ntnRichTextField(description, 'no description'),
-          Language: ntnMultiSelect([
-            language
+          Language: ntnMultiSelectField([
+            ntnMultiSelectItem(language, 'no language')
           ]),
           Fork: {
             type: 'checkbox',
