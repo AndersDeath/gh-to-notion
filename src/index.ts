@@ -1,3 +1,4 @@
+import { ntnTitleField, ntnUrlField, ntnRichTextField, ntnMultiSelectField, ntnMultiSelectItem, ntnCheckboxField, ntnDateField } from './ntn';
 import { Logger } from './logger';
 import { Client } from '@notionhq/client';
 import axios from 'axios';
@@ -23,67 +24,6 @@ const ghAuthHeader = (ghToken: string): { Authorization: string; 'Accept-Encodin
   return {
     'Authorization': `token ${ghToken}`,
     'Accept-Encoding': 'application/json',
-  }
-}
-
-const ntnTitleField = (name: string): any => {
-  return {
-    title:[
-      {
-        "text": {
-          "content": name,
-        }
-      }
-    ]
-  }
-}
-
-const ntnUrlField = (url: string): any => {
-  return {
-    type: 'url',
-    url: url
-  }
-}
-
-const ntnRichTextField = (content: string, byDefault: string): any => {
-  return {
-    rich_text: [
-        {
-        type: 'text',
-        text: {
-            content:  content || byDefault
-        }
-    }
-    ]
-  } 
-}
-
-const ntnMultiSelectItem = (content, byDefault) => {
-   return  {
-        name: content || byDefault
-    }
-}
-
-const ntnMultiSelectField = (elements: any[]): any => {
-  return {
-    type:'multi_select',
-    multi_select: elements
-  }
-}
-
-const ntnCheckboxField = (content): any => {
-  return {
-    type: 'checkbox',
-    checkbox: content
-  }
-}
-
-const ntnDateField = (date: string): any => {
-  return {
-    type: 'date',
-    date: {
-        start: date
-    }
   }
 }
 
