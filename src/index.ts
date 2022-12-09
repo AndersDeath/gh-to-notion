@@ -8,13 +8,9 @@ const notion = new Client({ auth: process.env.NOTION_KEY })
 
 const databaseId = process.env.NOTION_DATABASE_ID
 
-console.log(process.env.NOTION_KEY)
-
 const logger = new Logger();
 
 logger.info('Application has been started');
-
-console.log('==========!@#!@#!@#!@#123==========');
 
 const ghUserQuery = ({username, perPage, page} : {username: string; perPage: number; page: number}): string => {
   return `https://api.github.com/search/repositories?q=user:${username}&per_page=${perPage}&page=${page}`;
@@ -81,11 +77,7 @@ if(start) {
 
 
 getGithubData().then((e) => {
-    console.log( )
-    console.log(Object.keys(e.data))
-    console.log(e.data.items.length)
     e.data.items.forEach(element => {
-        // console.log(element);
         res.push({
             name: element.name,
             url: element.html_url,
@@ -110,11 +102,8 @@ getGithubData().then((e) => {
             element.created_at,
             element.updated_at,
             element.pushed_at
-            )
-
+            );
     });
-    // console.log(res);
-    // console.log(res.length);
 });
 
 
