@@ -71,6 +71,13 @@ const ntnMultiSelectField = (elements: any[]): any => {
   }
 }
 
+const ntnCheckboxField = (content): any => {
+  return {
+    type: 'checkbox',
+    checkbox: content
+  }
+}
+
 const getGithubData = async () => {
     const res =  await axios.get(ghUserQuery({
       username:  process.env.GH_USERNAME,
@@ -105,14 +112,8 @@ async function addItem(
           Language: ntnMultiSelectField([
             ntnMultiSelectItem(language, 'no language')
           ]),
-          Fork: {
-            type: 'checkbox',
-            checkbox: fork
-          },
-          Archived: {
-            type: 'checkbox',
-            checkbox: archived
-          },
+          Fork: ntnCheckboxField(fork),
+          Archived:  ntnCheckboxField(archived),
           Visibility:  ntnRichTextField(visibility, 'no visibility'),
           Created_at: {
             type: 'date',
