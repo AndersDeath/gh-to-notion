@@ -65,6 +65,34 @@ export const ntnDateField = (date: string): any => {
   }
 }
 
+const ntnDataBuilder = ({ name,
+  html_url,
+  fork,
+  description,
+  language,
+  archived,
+  visibility,
+  created_at,
+  updated_at,
+  pushed_at }) => {
+  return {
+    parent: { database_id: databaseId },
+    properties: {
+      Title: ntnTitleField(name),
+      URL: ntnUrlField(html_url),
+      Description: ntnRichTextField(description, 'no description'),
+      Language: ntnMultiSelectField([
+        ntnMultiSelectItem(language, 'no language')
+      ]),
+      Fork: ntnCheckboxField(fork),
+      Archived: ntnCheckboxField(archived),
+      Visibility: ntnRichTextField(visibility, 'no visibility'),
+      Created_at: ntnDateField(created_at),
+      Updated_at: ntnDateField(updated_at),
+      Pushed_at: ntnDateField(pushed_at),
+    },
+  }
+}
 
 export async function addNtnItem(
   { name,
@@ -79,23 +107,16 @@ export async function addNtnItem(
     pushed_at }
 ) {
   try {
-    const response = await notion.pages.create({
-      parent: { database_id: databaseId },
-      properties: {
-        Title: ntnTitleField(name),
-        URL: ntnUrlField(html_url),
-        Description: ntnRichTextField(description, 'no description'),
-        Language: ntnMultiSelectField([
-          ntnMultiSelectItem(language, 'no language')
-        ]),
-        Fork: ntnCheckboxField(fork),
-        Archived: ntnCheckboxField(archived),
-        Visibility: ntnRichTextField(visibility, 'no visibility'),
-        Created_at: ntnDateField(created_at),
-        Updated_at: ntnDateField(updated_at),
-        Pushed_at: ntnDateField(pushed_at),
-      },
-    })
+    const response = await notion.pages.create(ntnDataBuilder({ name,
+      html_url,
+      fork,
+      description,
+      language,
+      archived,
+      visibility,
+      created_at,
+      updated_at,
+      pushed_at }))
     console.log(response)
     console.log("Success! Entry added.")
   } catch (error) {
