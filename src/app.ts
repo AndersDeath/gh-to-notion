@@ -17,9 +17,20 @@ const promises = [];
 export function App() {
     getGithubData(perPage, pageNumber).then((e) => {
         console.log(e.data.total_count);
-        console.log(Math.ceil(e.data.total_count/20));
+        console.log(e.data.items[0]);
+        console.log(e.data.items.length);
 
         
+        for (let index = pageNumber; index <= Math.ceil(e.data.total_count/20); index++) {
+            promises.push(getGithubData(perPage, index));
+        }
+
+        Promise.all(promises).then((res) => {
+            res.forEach((q) => {
+                console.log(q.data.items[0]);
+                console.log(q.data.items.length);
+            })
+        });
         // e.data.items.forEach(element => {
         //     addNtnItem(
         //         {

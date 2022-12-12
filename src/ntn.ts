@@ -106,22 +106,26 @@ export async function addNtnItem(
     updated_at,
     pushed_at }
 ) {
-  try {
-    const response = await notion.pages.create(ntnDataBuilder({
-      name,
-      html_url,
-      fork,
-      description,
-      language,
-      archived,
-      visibility,
-      created_at,
-      updated_at,
-      pushed_at
-    }))
-    console.log(response)
-    console.log("Success! Entry added.")
-  } catch (error) {
-    console.error(error.body)
-  }
+
+  setTimeout(async () => {
+    try {
+      const response = await notion.pages.create(ntnDataBuilder({
+        name,
+        html_url,
+        fork,
+        description,
+        language,
+        archived,
+        visibility,
+        created_at,
+        updated_at,
+        pushed_at
+      }))
+      console.log(response)
+      console.log("Success! Entry added.")
+    } catch (error) {
+      console.error(error.body)
+    }
+  }, 3000);
+
 }
