@@ -2,7 +2,7 @@ require('dotenv').config();
 import { App } from "./app";
 import { Logger } from './logger';
 
-const start = false;
+const start = true;
 const logger = new Logger();
 
 if (start) {

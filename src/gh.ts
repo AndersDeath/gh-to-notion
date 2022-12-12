@@ -12,11 +12,11 @@ const ghAuthHeader = (ghToken: string): { Authorization: string; 'Accept-Encodin
     }
 }
   
-export const getGithubData = async () => {
+export const getGithubData = async (perPage: number, pageNumber: number) => {
     const res =  await axios.get(ghUserQuery({
     username:  process.env.GH_USERNAME,
-    perPage: 20,
-    page: 1,
+    perPage: perPage,
+    page: pageNumber,
     }), {
         headers: ghAuthHeader(process.env.GH_TOKEN)
     },);

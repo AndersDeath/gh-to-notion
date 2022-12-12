@@ -107,7 +107,8 @@ export async function addNtnItem(
     pushed_at }
 ) {
   try {
-    const response = await notion.pages.create(ntnDataBuilder({ name,
+    const response = await notion.pages.create(ntnDataBuilder({
+      name,
       html_url,
       fork,
       description,
@@ -116,7 +117,8 @@ export async function addNtnItem(
       visibility,
       created_at,
       updated_at,
-      pushed_at }))
+      pushed_at
+    }))
     console.log(response)
     console.log("Success! Entry added.")
   } catch (error) {
