@@ -106,7 +106,6 @@ const ntnWrite = async ({
   updated_at,
   pushed_at
 }) => {
-
   try {
     const response = await notion.pages.create(ntnDataBuilder({
       name,
