@@ -139,20 +139,20 @@ export async function addNtnItem(
     pushed_at }
 ) {
 
-  setTimeout(async () => {
-    await ntnWrite({
-      name,
-      html_url,
-      fork,
-      description,
-      language,
-      archived,
-      visibility,
-      created_at,
-      updated_at,
-      pushed_at
-    });
+  // setTimeout(async () => {
+  //   await ntnWrite({
+  //     name,
+  //     html_url,
+  //     fork,
+  //     description,
+  //     language,
+  //     archived,
+  //     visibility,
+  //     created_at,
+  //     updated_at,
+  //     pushed_at
+  //   });
 
-  }, 3000);
+  // }, 3000);
 
 }
