@@ -10,19 +10,21 @@ const logger = new Logger();
 logger.info('Application has been started');
 
 export function App() {
-   getGithubData().then((e) => {
+    getGithubData().then((e) => {
         e.data.items.forEach(element => {
             addNtnItem(
-                element.name,
-                element.html_url,
-                element.fork,
-                element.description,
-                element.language,
-                element.archived,
-                element.visibility,
-                element.created_at,
-                element.updated_at,
-                element.pushed_at
+                {
+                    name: element.name,
+                    html_url: element.html_url,
+                    fork: element.fork,
+                    description: element.description,
+                    language: element.language,
+                    archived: element.archived,
+                    visibility: element.visibility,
+                    created_at: element.created_at,
+                    updated_at: element.updated_at,
+                    pushed_at: element.pushed_at
+                }
             );
         });
     });
