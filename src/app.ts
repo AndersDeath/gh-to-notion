@@ -1,24 +1,15 @@
-
-
-
 import { getGithubData, ghParseData, getGithubDataGroup } from './gh';
 import { Logger } from './logger';
 import { addNtnItem } from './ntn';
 
 const logger = new Logger();
 
-logger.info('Application has been started');
-
-const perPage = 20;
-let pageNumber = 1;
-
-const promises = [];
-let data = [];
-
-
-
 export function App() {
+    logger.info('Application has been started');
+    const perPage = 20;
+    let pageNumber = 1;
     getGithubData(perPage, pageNumber).then((e) => {
+        let data = [];
         const totalNumber = e.data.total_count;
         data = [...data, ...ghParseData(e.data)];
         getGithubDataGroup(pageNumber + 1, totalNumber, perPage).then((q) => {
