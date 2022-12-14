@@ -32,7 +32,7 @@ export const ghUserQuery = ({ username, perPage, page }: UserQuery): string => {
  * @param ghToken Github auth token
  * @returns AuthHeader for request
  */
-const ghAuthHeader = (ghToken: string): Partial<AuthHeader> => {
+export const ghAuthHeader = (ghToken: string): Partial<AuthHeader> => {
     return {
         'Authorization': `token ${ghToken}`,
         'Accept-Encoding': 'application/json',
