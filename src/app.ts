@@ -12,8 +12,8 @@ const logger = new Logger();
  */
 export function App() {
     logger.info('Application has been started');
-    const perPage = 20;
-    let pageNumber = 1;
+    const perPage: number = 20;
+    let pageNumber: number = 1;
     getGithubData(perPage, pageNumber).then((e) => {
         let data = [];
         const totalNumber = e.data.total_count;

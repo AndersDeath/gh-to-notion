@@ -54,7 +54,7 @@ export const ghParseData = (data: Partial<{items: Item[]}>) => {
     return box;
 }
 
-export const getGithubDataGroup = async (pageNumber, totalNumber, perPage) => {
+export const getGithubDataGroup = async (pageNumber: number, totalNumber: number, perPage) => {
     const promises = [];
     let data = [];
     for (let index = pageNumber; index <= Math.ceil(totalNumber / 20); index++) {
