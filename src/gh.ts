@@ -1,3 +1,4 @@
+import { Item } from './ntn';
 import axios, { AxiosRequestConfig } from 'axios';
 
 interface UserQuery {
@@ -10,6 +11,7 @@ interface AuthHeader {
     Authorization: string;
     'Accept-Encoding': string;
 }
+
 
 export const ghUserQuery = ({ username, perPage, page }: UserQuery): string => {
     return `https://api.github.com/search/repositories?q=user:${username}&per_page=${perPage}&page=${page}`;
@@ -33,9 +35,9 @@ export const getGithubData = async (perPage: number, pageNumber: number) => {
     return res;
 }
 
-export const ghParseData = (data: any) => {
-    const box = []
-    data.items.forEach((element: any) => {
+export const ghParseData = (data: Partial<{items: Item[]}>) => {
+    const box: Item[] = []
+    data.items.forEach((element: Item) => {
         box.push({
             name: element.name,
             html_url: element.html_url,

@@ -136,7 +136,7 @@ export async function addNtnItem(
     visibility,
     created_at,
     updated_at,
-    pushed_at }
+    pushed_at }: Item
 ) {
 
   setTimeout(async () => {
@@ -156,3 +156,16 @@ export async function addNtnItem(
   }, 3000);
 
 }
+
+export interface Item {
+    name: string;
+    html_url: string;
+    fork: boolean;
+    description: string;
+    language: string;
+    archived: boolean;
+    visibility: string;
+    created_at: string;
+    updated_at: string;
+    pushed_at: string;
+};
