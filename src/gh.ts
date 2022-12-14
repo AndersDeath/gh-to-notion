@@ -45,7 +45,7 @@ const ghAuthHeader = (ghToken: string): Partial<AuthHeader> => {
  * @param pageNumber number of page
  * @returns data from github
  */
-export const getGithubData = async (perPage: number, pageNumber: number): any => {
+export const getGithubData = async (perPage: number, pageNumber: number): Promise<any> => {
     const res = await axios.get(ghUserQuery({
         username: process.env.GH_USERNAME,
         perPage: perPage,
@@ -79,7 +79,13 @@ export const ghParseData = (data: Partial<{items: Item[]}>): Item[] => {
     });
     return box;
 }
-
+/**
+ * Bunch of requests to Github
+ * @param pageNumber number of page
+ * @param totalNumber 
+ * @param perPage repos per page
+ * @returns array with data from Github
+ */
 export const getGithubDataGroup = async (pageNumber: number, totalNumber: number, perPage:number) => {
     const promises: Promise<any>[] = [];
     let data: Item[] = [];
