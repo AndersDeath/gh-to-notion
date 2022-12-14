@@ -75,6 +75,11 @@ export const ntnMultiSelectField = (elements: any[]): any => {
   }
 }
 
+/**
+ * 
+ * @param content 
+ * @returns 
+ */
 export const ntnCheckboxField = (content: boolean): any => {
   return {
     type: 'checkbox',
