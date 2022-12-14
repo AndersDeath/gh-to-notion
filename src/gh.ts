@@ -79,6 +79,7 @@ export const ghParseData = (data: Partial<{items: Item[]}>): Item[] => {
     });
     return box;
 }
+
 /**
  * Bunch of requests to Github
  * @param pageNumber number of page

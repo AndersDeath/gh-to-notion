@@ -1,10 +1,13 @@
-
 import { Client } from '@notionhq/client';
 export const notion = new Client({ auth: process.env.NOTION_KEY })
 
 const databaseId: string = process.env.NOTION_DATABASE_ID
 
-
+/**
+ * Notion title field
+ * @param name title name
+ * @returns title structure
+ */
 export const ntnTitleField = (name: string): any => {
   return {
     title: [
@@ -17,6 +20,11 @@ export const ntnTitleField = (name: string): any => {
   }
 }
 
+/**
+ * Notion url field
+ * @param url url string
+ * @returns url structure
+ */
 export const ntnUrlField = (url: string): any=> {
   return {
     type: 'url',
@@ -24,6 +32,12 @@ export const ntnUrlField = (url: string): any=> {
   }
 }
 
+/**
+ * Notion RichTextFirld
+ * @param content content string
+ * @param byDefault default value
+ * @returns ruchtext structure
+ */
 export const ntnRichTextField = (content: string, byDefault: string): any => {
   return {
     rich_text: [
