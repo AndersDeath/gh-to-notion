@@ -56,7 +56,12 @@ export const getGithubData = async (perPage: number, pageNumber: number): any =>
     return res;
 }
 
-export const ghParseData = (data: Partial<{items: Item[]}>) => {
+/**
+ * 
+ * @param data data from github
+ * @returns parsed data for pushing to Notion
+ */
+export const ghParseData = (data: Partial<{items: Item[]}>): Item[] => {
     const box: Item[] = []
     data.items.forEach((element: Item) => {
         box.push({
