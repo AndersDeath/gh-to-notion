@@ -1,4 +1,4 @@
-import { ntnTitleField, ntnUrlField, ntnRichTextField } from './../src/ntn';
+import { ntnTitleField, ntnUrlField, ntnRichTextField, ntnMultiSelectItem } from './../src/ntn';
 import {describe, expect, test} from '@jest/globals';
 
 describe('Notions structure', () => {
@@ -46,5 +46,19 @@ describe('Notions structure', () => {
       ]
     });
   });
+
+  test('ntnMultiSelectItem with data', () => {
+    expect(ntnMultiSelectItem('check', 'default')).toEqual({
+      name: 'check'
+    });
+  });
+
+  test('ntnMultiSelectItem without data', () => {
+    expect(ntnMultiSelectItem('', 'default')).toEqual({
+      name: 'default'
+    });
+  });
+  
+  
 
 });
