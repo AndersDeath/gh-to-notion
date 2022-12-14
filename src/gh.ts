@@ -1,22 +1,37 @@
 import { Item } from './ntn';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
+/**
+ * UserQuery interface
+ */
 interface UserQuery {
     username: string;
     perPage: number;
     page: number;
 }
 
+/**
+ * AuthHeader interface
+ */
 interface AuthHeader {
     Authorization: string;
     'Accept-Encoding': string;
 }
 
-
+/**
+ * 
+ * @param param0 UserQuery
+ * @returns url address for fetching data from github
+ */
 export const ghUserQuery = ({ username, perPage, page }: UserQuery): string => {
     return `https://api.github.com/search/repositories?q=user:${username}&per_page=${perPage}&page=${page}`;
 }
 
+/**
+ * 
+ * @param ghToken Github auth token
+ * @returns AuthHeader for request
+ */
 const ghAuthHeader = (ghToken: string): Partial<AuthHeader> => {
     return {
         'Authorization': `token ${ghToken}`,
