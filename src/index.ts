@@ -2,8 +2,8 @@ require('dotenv').config();
 import { App } from "./app";
 import { Logger } from './logger';
 
-const start = true;
-const logger = new Logger();
+const start: boolean = true;
+const logger: Logger = new Logger();
 
 if (start) {
   logger.info('Preparing for application starting');

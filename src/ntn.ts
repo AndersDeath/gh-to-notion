@@ -2,7 +2,7 @@
 import { Client } from '@notionhq/client';
 export const notion = new Client({ auth: process.env.NOTION_KEY })
 
-const databaseId = process.env.NOTION_DATABASE_ID
+const databaseId: string = process.env.NOTION_DATABASE_ID
 
 export const ntnTitleField = (name: string): any => {
   return {
@@ -74,7 +74,7 @@ const ntnDataBuilder = ({ name,
   visibility,
   created_at,
   updated_at,
-  pushed_at }) => {
+  pushed_at }: Item) => {
   return {
     parent: { database_id: databaseId },
     properties: {
@@ -105,7 +105,7 @@ const ntnWrite = async ({
   created_at,
   updated_at,
   pushed_at
-}) => {
+}: Item) => {
   try {
     const response = await notion.pages.create(ntnDataBuilder({
       name,
