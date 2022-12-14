@@ -51,12 +51,23 @@ export const ntnRichTextField = (content: string, byDefault: string): any => {
   }
 }
 
-export const ntnMultiSelectItem = (content, byDefault) => {
+/**
+ * Notion Multi select item
+ * @param content 
+ * @param byDefault 
+ * @returns multi select item structure
+ */
+export const ntnMultiSelectItem = (content: string, byDefault: string) => {
   return {
     name: content || byDefault
   }
 }
 
+/**
+ * Notion multi select field
+ * @param elements mulbit select items
+ * @returns multi select structure
+ */
 export const ntnMultiSelectField = (elements: any[]): any => {
   return {
     type: 'multi_select',
@@ -64,7 +75,7 @@ export const ntnMultiSelectField = (elements: any[]): any => {
   }
 }
 
-export const ntnCheckboxField = (content): any => {
+export const ntnCheckboxField = (content: boolean): any => {
   return {
     type: 'checkbox',
     checkbox: content
