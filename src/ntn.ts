@@ -4,6 +4,7 @@ export const notion = new Client({ auth: process.env.NOTION_KEY })
 
 const databaseId: string = process.env.NOTION_DATABASE_ID
 
+
 export const ntnTitleField = (name: string): any => {
   return {
     title: [
@@ -16,7 +17,7 @@ export const ntnTitleField = (name: string): any => {
   }
 }
 
-export const ntnUrlField = (url: string): any => {
+export const ntnUrlField = (url: string): any=> {
   return {
     type: 'url',
     url: url
