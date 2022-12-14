@@ -1,11 +1,21 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
+interface UserQuery {
+    username: string;
+    perPage: number;
+    page: number;
+}
 
-export const ghUserQuery = ({ username, perPage, page }: { username: string; perPage: number; page: number }): string => {
+interface AuthHeader {
+    Authorization: string;
+    'Accept-Encoding': string;
+}
+
+export const ghUserQuery = ({ username, perPage, page }: UserQuery): string => {
     return `https://api.github.com/search/repositories?q=user:${username}&per_page=${perPage}&page=${page}`;
 }
 
-const ghAuthHeader = (ghToken: string): { Authorization: string; 'Accept-Encoding': string } => {
+const ghAuthHeader = (ghToken: string): Partial<AuthHeader> => {
     return {
         'Authorization': `token ${ghToken}`,
         'Accept-Encoding': 'application/json',

@@ -2,8 +2,14 @@ import { getGithubData, ghParseData, getGithubDataGroup } from './gh';
 import { Logger } from './logger';
 import { addNtnItem } from './ntn';
 
+/**
+ * Logger instance
+ */
 const logger = new Logger();
 
+/**
+ * Application function
+ */
 export function App() {
     logger.info('Application has been started');
     const perPage = 20;
