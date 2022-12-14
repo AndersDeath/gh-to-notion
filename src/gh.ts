@@ -19,7 +19,7 @@ interface AuthHeader {
 }
 
 /**
- * 
+ * query's builder
  * @param param0 UserQuery
  * @returns url address for fetching data from github
  */
@@ -39,7 +39,13 @@ const ghAuthHeader = (ghToken: string): Partial<AuthHeader> => {
     }
 }
 
-export const getGithubData = async (perPage: number, pageNumber: number) => {
+/**
+ * Request to Guthub
+ * @param perPage repos per page
+ * @param pageNumber number of page
+ * @returns data from github
+ */
+export const getGithubData = async (perPage: number, pageNumber: number): any => {
     const res = await axios.get(ghUserQuery({
         username: process.env.GH_USERNAME,
         perPage: perPage,
