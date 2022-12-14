@@ -1,4 +1,4 @@
-import { ntnTitleField, ntnUrlField, ntnRichTextField, ntnMultiSelectItem } from './../src/ntn';
+import { ntnTitleField, ntnUrlField, ntnRichTextField, ntnMultiSelectItem, ntnMultiSelectField, ntnCheckboxField, ntnDateField } from './../src/ntn';
 import {describe, expect, test} from '@jest/globals';
 
 describe('Notions structure', () => {
@@ -59,6 +59,35 @@ describe('Notions structure', () => {
     });
   });
   
+  test('ntnMultiSelectField', () => {
+    console.log()
+    expect(ntnMultiSelectField([ntnMultiSelectItem('check', 'default')])).toEqual(
+      {
+        type: 'multi_select',
+        multi_select: [
+          {
+            name: 'check'
+          }
+        ]
+      }
+    );
+  });
+
+  test('ntnCheckboxField', () => {
+    expect(ntnCheckboxField(true)).toEqual({
+      type: 'checkbox',
+      checkbox: true
+    });
+  });
+
+  test('ntnDateField', () => {
+    expect(ntnDateField('check')).toEqual({
+      type: 'date',
+      date: {
+        start: 'check'
+      }
+    });
+  });
   
 
 });
