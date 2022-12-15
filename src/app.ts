@@ -80,7 +80,7 @@ interface ghItem {
     visibility: string | null,
     forks: number;
     open_issues: number;
-    watchers: numbe;
+    watchers: number;
     default_branch: string | null;
     permissions: any[];
     score: number;
