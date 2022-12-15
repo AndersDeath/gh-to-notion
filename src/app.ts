@@ -13,7 +13,7 @@ interface ghItem {
     description: string | null;
     fork: boolean;
     url: string;
-    
+
 }
 interface ghData {
     total_count: boolean;
@@ -34,7 +34,7 @@ export function App() {
     const perPage: number = 20;
     let pageNumber: number = 1;
     getGithubData(perPage, pageNumber).then((e: any) => {
-        console.log(e.data.);
+        console.log(e.data);
         // let data: Item[] = [];
         // const totalNumber:number = (e.data.total_count) as number;
         // data = [...data, ...ghParseData(e.data)];
