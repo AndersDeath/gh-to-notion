@@ -1,21 +1,6 @@
-import { Item } from './ntn';
+import { AuthHeader, Item, UserQuery } from "./interfaces";
 
-/**
- * UserQuery interface
- */
-interface UserQuery {
-    username: string;
-    perPage: number;
-    page: number;
-}
 
-/**
- * AuthHeader interface
- */
-interface AuthHeader {
-    Authorization: string;
-    'Accept-Encoding': string;
-}
 
 /**
  * query's builder

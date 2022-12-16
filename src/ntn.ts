@@ -1,3 +1,5 @@
+import { Item } from "./interfaces"
+
 /**
  * Notion title field
  * @param name title name
@@ -131,16 +133,3 @@ export const ntnDataBuilder = (databaseId, { name,
 }
 
 
-
-export interface Item {
-  name: string;
-  html_url: string;
-  fork: boolean;
-  description: string;
-  language: string;
-  archived: boolean;
-  visibility: string;
-  created_at: string;
-  updated_at: string;
-  pushed_at: string;
-};
