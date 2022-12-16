@@ -1,7 +1,6 @@
 import { Client } from '@notionhq/client';
 export const notion = new Client({ auth: process.env.NOTION_KEY })
 
-const databaseId: string = process.env.NOTION_DATABASE_ID
 
 /**
  * Notion title field
@@ -25,7 +24,7 @@ export const ntnTitleField = (name: string): any => {
  * @param url url string
  * @returns url structure
  */
-export const ntnUrlField = (url: string): any=> {
+export const ntnUrlField = (url: string): any => {
   return {
     type: 'url',
     url: url
@@ -106,7 +105,7 @@ export const ntnDateField = (date: string): any => {
  * @param param0 Item for notion
  * @returns Data for sending to Notion
  */
-const ntnDataBuilder = ({ name,
+const ntnDataBuilder = (databaseId, { name,
   html_url,
   fork,
   description,
@@ -152,7 +151,8 @@ const ntnWrite = async ({
   pushed_at
 }: Item) => {
   try {
-    const response = await notion.pages.create(ntnDataBuilder({
+    const response = await notion.pages.create(ntnDataBuilder(
+      process.env.NOTION_DATABASE_ID, {
       name,
       html_url,
       fork,
@@ -207,14 +207,14 @@ export async function addNtnItem(
 }
 
 export interface Item {
-    name: string;
-    html_url: string;
-    fork: boolean;
-    description: string;
-    language: string;
-    archived: boolean;
-    visibility: string;
-    created_at: string;
-    updated_at: string;
-    pushed_at: string;
+  name: string;
+  html_url: string;
+  fork: boolean;
+  description: string;
+  language: string;
+  archived: boolean;
+  visibility: string;
+  created_at: string;
+  updated_at: string;
+  pushed_at: string;
 };
