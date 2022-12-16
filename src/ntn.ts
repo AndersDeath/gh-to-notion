@@ -101,6 +101,11 @@ export const ntnDateField = (date: string): any => {
   }
 }
 
+/**
+ * Preparation data for notion
+ * @param param0 Item for notion
+ * @returns Data for sending to Notion
+ */
 const ntnDataBuilder = ({ name,
   html_url,
   fork,
@@ -130,6 +135,10 @@ const ntnDataBuilder = ({ name,
   }
 }
 
+/**
+ * Apit request to notion
+ * @param param0 Notion data
+ */
 const ntnWrite = async ({
   name,
   html_url,
@@ -162,6 +171,10 @@ const ntnWrite = async ({
   }
 }
 
+/**
+ * Add data to notion include timeout for async requests
+ * @param param0 data for notion
+ */
 export async function addNtnItem(
   { name,
     html_url,
