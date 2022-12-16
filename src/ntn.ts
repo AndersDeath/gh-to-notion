@@ -76,9 +76,9 @@ export const ntnMultiSelectField = (elements: any[]): any => {
 }
 
 /**
- * 
- * @param content 
- * @returns 
+ * Notion checkbox field
+ * @param content checkox value
+ * @returns checkbox field structure
  */
 export const ntnCheckboxField = (content: boolean): any => {
   return {
@@ -87,6 +87,11 @@ export const ntnCheckboxField = (content: boolean): any => {
   }
 }
 
+/**
+ * Notion date field
+ * @param date date value
+ * @returns date field structure
+ */
 export const ntnDateField = (date: string): any => {
   return {
     type: 'date',
