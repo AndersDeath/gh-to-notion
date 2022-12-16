@@ -5,48 +5,6 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 describe('GithubMethods', () => {
 
-    it('fetches successfully data from an API', async () => {
-        const data = {
-            data: { 
-                total_count: 1,
-                items: [
-                    {
-                        name: 'check',
-                        html_url: 'check',
-                        fork: true,
-                        description: 'check',
-                        language: 'check',
-                        archived: true,
-                        visibility: 'check',
-                        created_at: 'check',
-                        updated_at: 'check',
-                        pushed_at: 'check'
-                    }
-                ]
-             },
-        }
-    
-        mockedAxios.get.mockImplementationOnce(() => Promise.resolve(data));
-    
-        await expect(getGithubData(20,1)).resolves.toEqual({
-            count: 1,
-            items: [
-                {
-                    name: 'check',
-                    html_url: 'check',
-                    fork: true,
-                    description: 'check',
-                    language: 'check',
-                    archived: true,
-                    visibility: 'check',
-                    created_at: 'check',
-                    updated_at: 'check',
-                    pushed_at: 'check'
-                }
-            ]
-        });
-      });
-
     test('ghAuthHeader', () => {
         expect(ghAuthHeader('check')).toEqual({
             'Authorization': `token check`,

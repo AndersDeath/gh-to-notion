@@ -1,4 +1,4 @@
-import { getGithubData, ghParseData, getGithubDataGroup } from './gh';
+import { getGithubDataGroup, getGithubData} from './api';
 import { Logger } from './logger';
 import { addNtnItem, Item } from './ntn';
 
