@@ -98,7 +98,7 @@ export const getGithubDataGroup = async (pageNumber: number, totalNumber: number
     }
     return await Promise.all(promises).then((res) => {
         res.forEach((q) => {
-            data = [...data, ...ghParseData(q.data)];
+            data = [...data, ...q.items];
         });
         return data;
     });

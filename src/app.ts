@@ -15,29 +15,27 @@ export function App() {
     const perPage: number = 20;
     let pageNumber: number = 1;
     getGithubData(perPage, pageNumber).then((e: any) => {
-        let data: Item[] = [];
+        let data: Item[] = []; 
         const totalNumber:number = e.count as number;
         data = [...data, ...e.items];
-        console.log(totalNumber);
-        console.log(data);
-        // getGithubDataGroup(pageNumber + 1, totalNumber, perPage).then((q: any) => {
-        //     data = [...data, ...q];
-        //     data.forEach((element: Partial<Item> )=> {
-        //         addNtnItem(
-        //             {
-        //                 name: element.name,
-        //                 html_url: element.html_url,
-        //                 fork: element.fork,
-        //                 description: element.description,
-        //                 language: element.language,
-        //                 archived: element.archived,
-        //                 visibility: element.visibility,
-        //                 created_at: element.created_at,
-        //                 updated_at: element.updated_at,
-        //                 pushed_at: element.pushed_at
-        //             }
-        //         );
-        //     });
-        // });
+        getGithubDataGroup(pageNumber + 1, totalNumber, perPage).then((q: any) => {
+            data = [...data, ...q];
+            data.forEach((element: Partial<Item> )=> {
+                // addNtnItem(
+                //     {
+                //         name: element.name,
+                //         html_url: element.html_url,
+                //         fork: element.fork,
+                //         description: element.description,
+                //         language: element.language,
+                //         archived: element.archived,
+                //         visibility: element.visibility,
+                //         created_at: element.created_at,
+                //         updated_at: element.updated_at,
+                //         pushed_at: element.pushed_at
+                //     }
+                // );
+            });
+        });
     });
 }
