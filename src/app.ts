@@ -15,10 +15,11 @@ export function App() {
     const perPage: number = 20;
     let pageNumber: number = 1;
     getGithubData(perPage, pageNumber).then((e: any) => {
-        console.log(e.data);
-        // let data: Item[] = [];
-        // const totalNumber:number = (e.data.total_count) as number;
-        // data = [...data, ...ghParseData(e.data)];
+        let data: Item[] = [];
+        const totalNumber:number = e.count as number;
+        data = [...data, ...e.items];
+        console.log(totalNumber);
+        console.log(data);
         // getGithubDataGroup(pageNumber + 1, totalNumber, perPage).then((q: any) => {
         //     data = [...data, ...q];
         //     data.forEach((element: Partial<Item> )=> {

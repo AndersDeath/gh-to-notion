@@ -53,7 +53,10 @@ export const getGithubData = async (perPage: number, pageNumber: number): Promis
     }), {
         headers: ghAuthHeader(process.env.GH_TOKEN)
     },);
-    return res;
+    return {
+        count: res.data.total_count,
+        items: ghParseData(res.data)
+    };
 }
 
 /**
