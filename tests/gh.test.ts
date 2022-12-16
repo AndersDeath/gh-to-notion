@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ghAuthHeader, ghUserQuery, ghParseData, getGithubData } from './../src/gh';
+import { ghAuthHeader, ghUserQuery, ghParseData } from './../src/gh';
 import { describe, expect, test } from '@jest/globals';
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;

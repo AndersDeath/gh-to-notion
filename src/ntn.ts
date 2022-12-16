@@ -1,7 +1,3 @@
-import { Client } from '@notionhq/client';
-export const notion = new Client({ auth: process.env.NOTION_KEY })
-
-
 /**
  * Notion title field
  * @param name title name
@@ -105,7 +101,7 @@ export const ntnDateField = (date: string): any => {
  * @param param0 Item for notion
  * @returns Data for sending to Notion
  */
-const ntnDataBuilder = (databaseId, { name,
+export const ntnDataBuilder = (databaseId, { name,
   html_url,
   fork,
   description,
@@ -134,77 +130,7 @@ const ntnDataBuilder = (databaseId, { name,
   }
 }
 
-/**
- * Apit request to notion
- * @param param0 Notion data
- */
-const ntnWrite = async ({
-  name,
-  html_url,
-  fork,
-  description,
-  language,
-  archived,
-  visibility,
-  created_at,
-  updated_at,
-  pushed_at
-}: Item) => {
-  try {
-    const response = await notion.pages.create(ntnDataBuilder(
-      process.env.NOTION_DATABASE_ID, {
-      name,
-      html_url,
-      fork,
-      description,
-      language,
-      archived,
-      visibility,
-      created_at,
-      updated_at,
-      pushed_at
-    }));
-    console.log(response)
-    console.log("Success! Entry added.")
-  } catch (error) {
-    console.error(error.body)
-  }
-}
 
-/**
- * Add data to notion include timeout for async requests
- * @param param0 data for notion
- */
-export async function addNtnItem(
-  { name,
-    html_url,
-    fork,
-    description,
-    language,
-    archived,
-    visibility,
-    created_at,
-    updated_at,
-    pushed_at }: Item
-) {
-
-  setTimeout(async () => {
-    await ntnWrite({
-      name,
-      html_url,
-      fork,
-      description,
-      language,
-      archived,
-      visibility,
-      created_at,
-      updated_at,
-      pushed_at
-    });
-
-  }, 3000);
-
-}
 
 export interface Item {
   name: string;

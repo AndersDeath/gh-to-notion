@@ -1,4 +1,4 @@
-import { ntnTitleField, ntnUrlField, ntnRichTextField, ntnMultiSelectItem, ntnMultiSelectField, ntnCheckboxField, ntnDateField } from './../src/ntn';
+import { ntnTitleField, ntnUrlField, ntnRichTextField, ntnMultiSelectItem, ntnMultiSelectField, ntnCheckboxField, ntnDateField, ntnDataBuilder } from './../src/ntn';
 import {describe, expect, test} from '@jest/globals';
 
 describe('Notions structure', () => {
@@ -88,6 +88,102 @@ describe('Notions structure', () => {
       }
     });
   });
+
+  test('ghParseData', () => {
+
+
+    expect(ntnDataBuilder(
+      'test-key',
+      {
+        name: 'check',
+        html_url: 'check',
+        fork: true,
+        description: 'check',
+        language: 'check',
+        archived: true,
+        visibility: 'check',
+        created_at: 'check',
+        updated_at: 'check',
+        pushed_at: 'check'
+      }
+    )).toEqual(
+ 
+      {
+        "parent": {
+            "database_id": "test-key"
+        },
+        "properties": {
+            "Title": {
+                "title": [
+                    {
+                        "text": {
+                            "content": "check"
+                        }
+                    }
+                ]
+            },
+            "URL": {
+                "type": "url",
+                "url": "check"
+            },
+            "Description": {
+                "rich_text": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "content": "check"
+                        }
+                    }
+                ]
+            },
+            "Language": {
+                "type": "multi_select",
+                "multi_select": [
+                    {
+                        "name": "check"
+                    }
+                ]
+            },
+            "Fork": {
+                "type": "checkbox",
+                "checkbox": true
+            },
+            "Archived": {
+                "type": "checkbox",
+                "checkbox": true
+            },
+            "Visibility": {
+                "rich_text": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "content": "check"
+                        }
+                    }
+                ]
+            },
+            "Created_at": {
+                "type": "date",
+                "date": {
+                    "start": "check"
+                }
+            },
+            "Updated_at": {
+                "type": "date",
+                "date": {
+                    "start": "check"
+                }
+            },
+            "Pushed_at": {
+                "type": "date",
+                "date": {
+                    "start": "check"
+                }
+            }
+        }
+    }
+    );
+});
   
 
 });

@@ -1,6 +1,8 @@
 import { ghUserQuery, ghAuthHeader, ghParseData } from './gh';
-import { Item } from './ntn';
+import { Item, ntnDataBuilder } from './ntn';
 import axios from 'axios';
+import { Client } from '@notionhq/client';
+const notion = new Client({ auth: process.env.NOTION_KEY })
 
 /**
  * Bunch of requests to Github
@@ -42,3 +44,76 @@ export const getGithubData = async (perPage: number, pageNumber: number): Promis
         items: ghParseData(res.data)
     };
 }
+
+
+/**
+ * Apit request to notion
+ * @param param0 Notion data
+ */
+const sendDataToNotion = async ({
+    name,
+    html_url,
+    fork,
+    description,
+    language,
+    archived,
+    visibility,
+    created_at,
+    updated_at,
+    pushed_at
+  }: Item) => {
+    try {
+      const response = await notion.pages.create(ntnDataBuilder(
+        process.env.NOTION_DATABASE_ID, {
+        name,
+        html_url,
+        fork,
+        description,
+        language,
+        archived,
+        visibility,
+        created_at,
+        updated_at,
+        pushed_at
+      }));
+      console.log(response)
+      console.log("Success! Entry added.")
+    } catch (error) {
+      console.error(error.body)
+    }
+  }
+
+  /**
+ * Add data to notion include timeout for async requests
+ * @param param0 data for notion
+ */
+export async function addNtnItem(
+    { name,
+      html_url,
+      fork,
+      description,
+      language,
+      archived,
+      visibility,
+      created_at,
+      updated_at,
+      pushed_at }: Item
+  ) {
+  
+    setTimeout(async () => {
+      await sendDataToNotion({
+        name,
+        html_url,
+        fork,
+        description,
+        language,
+        archived,
+        visibility,
+        created_at,
+        updated_at,
+        pushed_at
+      });
+  
+    }, 3000);
+  
+  }
