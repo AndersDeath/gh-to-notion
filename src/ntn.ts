@@ -149,7 +149,7 @@ const ntnWrite = async ({
       created_at,
       updated_at,
       pushed_at
-    }))
+    }));
     console.log(response)
     console.log("Success! Entry added.")
   } catch (error) {
