@@ -1,6 +1,6 @@
 import { getGithubDataGroup, getGithubData, addNtnItem} from './api';
 import { Logger } from './logger';
-import { Item } from './ntn';
+import { Item } from './interfaces';
 
 /**
  * Logger instance

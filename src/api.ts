@@ -1,5 +1,6 @@
 import { ghUserQuery, ghAuthHeader, ghParseData } from './gh';
-import { Item, ntnDataBuilder } from './ntn';
+import { ntnDataBuilder } from './ntn';
+import { Item } from './interfaces';
 import axios from 'axios';
 import { Client } from '@notionhq/client';
 const notion = new Client({ auth: process.env.NOTION_KEY })
