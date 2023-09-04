@@ -30,10 +30,10 @@ export const ntnUrlField = (url: string): any => {
 }
 
 /**
- * Notion RichTextFirld
+ * Notion RichTextField
  * @param content content string
  * @param byDefault default value
- * @returns ruchtext structure
+ * @returns richtext structure
  */
 export const ntnRichTextField = (content: string, byDefault: string): any => {
   return {

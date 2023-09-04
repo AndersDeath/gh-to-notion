@@ -1,9 +1,7 @@
 import { AuthHeader, Item, UserQuery } from "./interfaces";
 
-
-
 /**
- * query's builder
+ * Query's builder
  * @param param0 UserQuery
  * @returns url address for fetching data from github
  */
